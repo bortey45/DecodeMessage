@@ -45,21 +45,27 @@
 */
 
 /*
-cd \Users\newyo\source\repos\DecodeMessage\x64\Debug
+cd C:\Users\newyo\source\repos\DecodeMessage_2\x64\Debug
 DecodeMessage.exe C:\Temp\decode_input.txt
+
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
 #include <string.h>
-#include ".\DecodeMessage.h"
 
 /////// Uncomment to Debug
-#define DEBUG
-#define PYRAMID_DEBUG
+//#define DEBUG
+//#define PYRAMID_DEBUG
 
 #define MAX_BRICK_NUM 400 // In release version this can be an argv parameter, e.g "-s400"
+
+// Functions forward-declarations. Usually they go into a header (.h) file.
+int BuildPyramid();
+int PrintPyramid(int max_index);
+int DecodeMessage();
+
 
 // We build a pyramid as a set of "bricks", arranged in "rows": upper layer -> row=1; next layer -> row=2, etc.
 
@@ -75,20 +81,30 @@ typedef struct Brick
 
 Brick pyramid[MAX_BRICK_NUM];
 
-///////////char file_name[80] = "C:\\Temp\\decode_input.txt"; // In release version this can be an argv parameter, e.g. "-fC:\Temp\decode_input.txt"
+//char file_name[80] = "C:\\Temp\\decode_input.txt"; // In release version this can be an argv parameter, e.g. "-fC:\Temp\decode_input.txt"
 char file_name[80];
 
 int main(int argc, char* argv[]) {
+    /******
+    int main (int argc, char *argv[]) {
+ int i=0;
+ printf("\ncmdline args count=%s", argc);
 
+     printf("\nexe name=%s", argv[0]);
+
+    for (i = 1; i < argc; i++) {
+        printf("\narg%d=%s\n", i, argv[i]);
+    }
+   
+    ******/
+   
+    printf("\n<%s>", argv[1]);
+
+ 
     strcpy_s(file_name, sizeof file_name, argv[1]);
-
-#ifdef DEBUG
-    printf("\n<argv %s>", argv[1]);
     printf("\nfile_name <%s>", file_name);
-#endif
 
-
-    int max_index, max_brick_num, rc1, rc2;
+     int max_index, max_brick_num, rc1, rc2;
   
     max_brick_num = BuildPyramid();
 
