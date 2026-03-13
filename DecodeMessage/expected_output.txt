@@ -1,0 +1,26 @@
+/* Expected output:
+    huge
+    wish
+    electric
+    lot
+    visit
+    offer
+    all
+    our
+    system
+    now
+    card
+    current
+    way
+    check
+    parent
+    whole
+    design
+    skill
+    wait
+    man
+    people
+    deal
+    planet
+    moment
+*/

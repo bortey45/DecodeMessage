@@ -1,50 +1,23 @@
 // DecodeMessage.c 
-// This program reads " " separated file, each line consists of int ("key") and one-word-string ("value").
-// We assume that the message should be decoded in order determined by file (e.g. 1st line, 2nd line, etc.)
-// Also to be taken into account that the same "key-value" can occur in the the file multiple times.
-// For example "I love computers, but my sons love smart phones" --> 'worg "love" appears twice.
-// If the goal is to "sort" the outputin order of the "key" ("value_for_key_1" "value_for_key_3" "value_for_key_6" etc.)
-//   then we need to:
-//      a) to add another member "char word[80]" to the struct Brick
-//      b) put extracted "value" into it while looping through the lines
-//      c) while looping through "pyramid" 
-//           if ((pyramid[i].brick_pos == RIGHT) || (pyramid[i].brick_pos == PEAK)) {
-//              printf("%s\n", pyramid[i].word;
-//           }
+// This program reads an encoded message from a .txt file and return its decoded version as a string.
+// The file consists of lines, each line is of "key value". E.g. "136 huge", "7 dog"
+// The task is to decode a hidden message based on the arrangement of these numbers (bricks) into a "pyramid" structure,
+//   with each line of the pyramid having one more number than the line above it.
+// The top row  brick=1;
+// next row #2: {bricks 2, 3}; 
+// next row #3: {bricks 4, 5, 6};
+// next row #4: {bricks 7, 8, 9, 10}.  
+// The key to decoding the message is to use the words corresponding to the numbers at the end of each pyramid line:
+// For example: 1, 3, 6, 10, etc.. 
+// All the other words must be ignored.
 // 
-// Disclaimer: final version of the program must have "error-checking and handling".
+// Warning: final version of the program must have "error-checking and handling".
 // Possible errors:
 //    "key value exceeds MAX_BRICK_NUM"
 //    "key is not integer"
 //    "word is longer than 80", "line is longer than 255"
-/* Expected output:
-    huge
-    wish
-    electric
-    lot
-    visit
-    offer
-    all
-    our
-    system
-    now
-    card
-    current
-    way
-    check
-    parent
-    whole
-    design
-    skill
-    wait
-    man
-    people
-    deal
-    planet
-    moment
-*/
 
-/*
+/* Run cmd
 cd \Users\newyo\source\repos\DecodeMessage\x64\Debug
 DecodeMessage.exe C:\Temp\decode_input.txt
 */
@@ -56,8 +29,8 @@ DecodeMessage.exe C:\Temp\decode_input.txt
 #include ".\DecodeMessage.h"
 
 /////// Uncomment to Debug
-#define DEBUG
-#define PYRAMID_DEBUG
+//#define DEBUG
+//#define PYRAMID_DEBUG
 
 #define MAX_BRICK_NUM 400 // In release version this can be an argv parameter, e.g "-s400"
 
