@@ -47,22 +47,20 @@ int DecodeMessage(Brick pyramid[], char file_name[]) {
     char value[80];
     char key[80];
 
-    char* token1;
-    char* next_token1;
-    char seps[] = " ";
-    int len;
-    int int_key;
+    char* token1, next_token1;
+    char seps[] = " "; // separator between "key" and "value"
+    int len, int_key;
     int max_key = 0;
+#ifdef DEBUG
+    printf("DecodeMessage begin\n");
+#endif 
 
     while (fgets(line, sizeof(line), fp) != NULL)
     {
         line[strlen(line) - 1] = '\0';  //Get rid of new_line, so when we parse line we'll get "value" as a string.
         len = strlen(line);
 
-#ifdef DEBUG
-        printf("line <%s> len <%d>\n", line, len);
-#endif
-
+        // Using strtok_s to parse <key value>
         token1 = NULL;
         next_token1 = NULL;
 
@@ -73,25 +71,17 @@ int DecodeMessage(Brick pyramid[], char file_name[]) {
             token1 = strtok_s(NULL, seps, &next_token1);
             strcpy_s(value, sizeof value, token1);
 
-#ifdef DEBUG
-            printf("key <%s> value <%s>\n", key, value);
-#endif
-
         }
 
         int_key = atoi(key);
         if ((pyramid[int_key].brick_pos == RIGHT) || (pyramid[int_key].brick_pos == PEAK))
         {
-             printf("%s\n", value);
+            // OUTPUT!!! Print out decoded value
+            printf("%s\n", value);
         }
 
     }
     fclose(fp);
-
-#ifdef DEBUG
-    //printf("max key <%d>\n", max_key);
-    printf("hello, world!");
-#endif
 
     return max_key;
 }

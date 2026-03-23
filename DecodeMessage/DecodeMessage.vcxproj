@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DecodeMessage.c" />
+    <ClCompile Include="Functions.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DecodeMessage.h" />

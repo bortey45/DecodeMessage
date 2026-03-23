@@ -18,6 +18,9 @@
     <ClCompile Include="DecodeMessage.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Functions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DecodeMessage.h">
